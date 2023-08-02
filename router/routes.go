@@ -1,38 +1,21 @@
 package router
 
 import (
-	"net/http"
-
+	"github.com/CaioLuColaco/bitcoin-transactions/handler"
 	"github.com/gin-gonic/gin"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/transaction", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Get transaction",
-			})
-		})
-		v1.POST("/transaction", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Post transaction",
-			})
-		})
-		v1.DELETE("/transaction", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Delete transaction",
-			})
-		})
-		v1.PUT("/transaction", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Put transaction",
-			})
-		})
-		v1.GET("/transactions", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "Get transactions",
-			})
-		})
+		v1.GET("/transaction", handler.FindOneTransactionHandler)
+
+		v1.POST("/transaction", handler.CreateTransactionHandler)
+
+		v1.DELETE("/transaction", handler.DeleteTransactionHandler)
+
+		v1.PUT("/transaction", handler.UpdateTransactionHandler)
+		
+		v1.GET("/transactions", handler.FindAllTransactionHandler)
 	}
 }
