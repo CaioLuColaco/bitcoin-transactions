@@ -13,6 +13,14 @@ import (
 func CreateTransaction(c *gin.Context) {
 	hash := c.Params.ByName("hash")
 
+	var findTransaction models.Transaction
+	if err := database.DB.Where("hash = ?", hash).First(&findTransaction).Error; err == nil {
+		c.JSON(http.StatusConflict, gin.H{
+			"error": "Transaction already exists",
+		})
+		return
+	}
+
 	destURL := "https://mainnet.infura.io/v3/4355c5add5574242b01ce888c231f7bf"
 	requestBody := map[string]interface{}{
 		"jsonrpc": "2.0",
