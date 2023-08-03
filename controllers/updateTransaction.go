@@ -8,11 +8,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ShowOneTransaction(c *gin.Context) {
-	var transaction models.Transaction
+func UpdateTransaction(c *gin.Context) {
 	id := c.Params.ByName("id")
-	database.DB.First(&transaction, id)
 
+	var transaction *models.Transaction
+
+	database.DB.First(&transaction, id)
 	if transaction.ID == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
 			"Not found": "Transaction not found",
@@ -20,5 +21,15 @@ func ShowOneTransaction(c *gin.Context) {
 		return
 	}
 
+	if err := c.ShouldBindJSON(&transaction); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	database.DB.Model(&transaction).UpdateColumns(transaction)
+
 	c.JSON(http.StatusOK, transaction)
+
 }

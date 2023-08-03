@@ -9,10 +9,13 @@ func HandleRequests() {
 	r := gin.Default()
 
 	r.GET("/transactions", controllers.ShowAllTransactions)
-	r.GET("/transaction/:id", controllers.ShowOneTransaction)
+	r.GET("/transaction/:id", controllers.ShowOneTransactionID)
 	r.POST("/transaction/:hash", controllers.CreateTransaction)
-	r.PUT("/transaction/:id", controllers.UpdateTransaction)
+	r.PATCH("/transaction/:id", controllers.UpdateTransaction)
 	r.DELETE("/transaction/:id", controllers.DeleteTransaction)
+	
+	r.GET("/transactions/blockNumber/:blockNumber", controllers.FindTransactionsByBlockNumber)
+	r.GET("/transactions/from/:from", controllers.FindTransactionsByFrom)
 
 	r.Run()
 }
