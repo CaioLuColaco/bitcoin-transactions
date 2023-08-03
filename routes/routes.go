@@ -15,7 +15,6 @@ func HandleRequests() {
 	r.DELETE("/transaction/:id", controllers.DeleteTransaction)
 	
 	r.GET("/transactions/blockNumber/:blockNumber", controllers.FindTransactionsByBlockNumber)
-	r.GET("/transactions/from/:from", controllers.FindTransactionsByFrom)
 
 	r.Run()
 }
