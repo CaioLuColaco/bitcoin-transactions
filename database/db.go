@@ -13,7 +13,7 @@ var (
 	err error
 )
 
-func ConectaComBancoDeDados() {
+func ConnectToDatabase() {
 	stringDeConexao := "host=localhost user=root password=root dbname=root port=5432 sslmode=disable"
 	DB, err = gorm.Open(postgres.Open(stringDeConexao))
 	if err != nil {
