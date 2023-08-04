@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/CaioLuColaco/bitcoin-transactions/database"
-	"github.com/CaioLuColaco/bitcoin-transactions/models"
+	"github.com/CaioLuColaco/etherum-transactions/database"
+	"github.com/CaioLuColaco/etherum-transactions/models"
 	"github.com/gin-gonic/gin"
 	_ "github.com/swaggo/swag/example/celler/httputil"
 )

@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/CaioLuColaco/bitcoin-transactions/controllers"
+	"github.com/CaioLuColaco/etherum-transactions/controllers"
+	docs "github.com/CaioLuColaco/etherum-transactions/docs"
 	"github.com/gin-gonic/gin"
-	docs "github.com/CaioLuColaco/bitcoin-transactions/docs"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )

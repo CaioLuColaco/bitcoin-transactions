@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/CaioLuColaco/bitcoin-transactions/database"
-	"github.com/CaioLuColaco/bitcoin-transactions/routes"
+	"github.com/CaioLuColaco/etherum-transactions/database"
+	"github.com/CaioLuColaco/etherum-transactions/routes"
 )
 
 func main() {

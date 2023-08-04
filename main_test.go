@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/CaioLuColaco/bitcoin-transactions/controllers"
-	"github.com/CaioLuColaco/bitcoin-transactions/database"
-	"github.com/CaioLuColaco/bitcoin-transactions/models"
+	"github.com/CaioLuColaco/etherum-transactions/controllers"
+	"github.com/CaioLuColaco/etherum-transactions/database"
+	"github.com/CaioLuColaco/etherum-transactions/models"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )

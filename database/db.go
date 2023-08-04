@@ -3,13 +3,13 @@ package database
 import (
 	"log"
 
-	"github.com/CaioLuColaco/bitcoin-transactions/models"
+	"github.com/CaioLuColaco/etherum-transactions/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var (
-	DB *gorm.DB
+	DB  *gorm.DB
 	err error
 )
 

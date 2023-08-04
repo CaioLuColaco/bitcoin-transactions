@@ -1,4 +1,4 @@
-module github.com/CaioLuColaco/bitcoin-transactions
+module github.com/CaioLuColaco/etherum-transactions
 
 go 1.20
 

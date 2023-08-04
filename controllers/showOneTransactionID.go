@@ -3,14 +3,14 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/CaioLuColaco/bitcoin-transactions/database"
-	"github.com/CaioLuColaco/bitcoin-transactions/models"
-	_ "github.com/swaggo/swag/example/celler/httputil"
+	"github.com/CaioLuColaco/etherum-transactions/database"
+	"github.com/CaioLuColaco/etherum-transactions/models"
 	"github.com/gin-gonic/gin"
+	_ "github.com/swaggo/swag/example/celler/httputil"
 )
 
 // ShowOneTransactionID godoc
-// @Summary      Show one transaction registred 
+// @Summary      Show one transaction registred
 // @Description  Route used to get a one transaction registred by ID
 // @Tags         transaction
 // @Accept       json
