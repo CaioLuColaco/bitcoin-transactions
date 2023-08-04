@@ -5,9 +5,22 @@ import (
 
 	"github.com/CaioLuColaco/bitcoin-transactions/database"
 	"github.com/CaioLuColaco/bitcoin-transactions/models"
+	_ "github.com/swaggo/swag/example/celler/httputil"
 	"github.com/gin-gonic/gin"
 )
 
+// UpdateTransaction godoc
+// @Summary      Update one transaction
+// @Description  Route used to update a one transaction by ID
+// @Tags         transaction
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Transaction ID"
+// @Param        transaction   body    models.Transaction  true  "Model of Transaction"
+// @Success      200  {object}  models.Transaction
+// @Failure      400  {object}  httputil.HTTPError
+// @Failure      404  {object}  httputil.HTTPError
+// @Router       /transaction/{id} [patch]
 func UpdateTransaction(c *gin.Context) {
 	id := c.Params.ByName("id")
 

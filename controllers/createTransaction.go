@@ -8,8 +8,20 @@ import (
 	"github.com/CaioLuColaco/bitcoin-transactions/database"
 	"github.com/CaioLuColaco/bitcoin-transactions/models"
 	"github.com/gin-gonic/gin"
+	_ "github.com/swaggo/swag/example/celler/httputil"
 )
 
+// CreateTransaction godoc
+// @Summary      Create one transaction
+// @Description  Route used to create a one transaction
+// @Tags         transaction
+// @Accept       json
+// @Produce      json
+// @Param        hash   path      string  true  "Transaction Hash"
+// @Success      200  {object}  models.Transaction
+// @Failure      400  {object}  httputil.HTTPError
+// @Failure      404  {object}  httputil.HTTPError
+// @Router       /transaction/{hash} [post]
 func CreateTransaction(c *gin.Context) {
 	hash := c.Params.ByName("hash")
 
@@ -68,17 +80,17 @@ func CreateTransaction(c *gin.Context) {
 	transaction.Tp = getStringFromResponse(responseResult, "type")
 	transaction.V = getStringFromResponse(responseResult, "v")
 	transaction.Value = getStringFromResponse(responseResult, "value")
-	
+
 	database.DB.Create(&transaction)
 
 	c.JSON(http.StatusOK, transaction)
 }
 
 func getStringFromResponse(data map[string]interface{}, key string) string {
-    value, ok := data[key]
-    if !ok || value == nil {
-        return ""
-    }
-    strValue, _ := value.(string)
-    return strValue
+	value, ok := data[key]
+	if !ok || value == nil {
+		return ""
+	}
+	strValue, _ := value.(string)
+	return strValue
 }

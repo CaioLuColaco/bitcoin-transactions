@@ -1,0 +1,237 @@
+definitions:
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  httputil.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+  models.Transaction:
+    properties:
+      blockHash:
+        type: string
+      blockNumber:
+        type: string
+      chainId:
+        type: string
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      from:
+        type: string
+      gas:
+        type: string
+      gasPrice:
+        type: string
+      hash:
+        type: string
+      id:
+        type: integer
+      maxFeePerGas:
+        type: string
+      maxPriorityFeePerGas:
+        type: string
+      nonce:
+        type: string
+      r:
+        type: string
+      to:
+        type: string
+      transactionIndex:
+        type: string
+      type:
+        type: string
+      updatedAt:
+        type: string
+      v:
+        type: string
+      value:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /transaction/{hash}:
+    post:
+      consumes:
+      - application/json
+      description: Route used to create a one transaction
+      parameters:
+      - description: Transaction Hash
+        in: path
+        name: hash
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Create one transaction
+      tags:
+      - transaction
+  /transaction/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Route used to delete a one transaction by ID
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Delete one transaction
+      tags:
+      - transaction
+    get:
+      consumes:
+      - application/json
+      description: Route used to get a one transaction registred by ID
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Show one transaction registred
+      tags:
+      - transaction
+    patch:
+      consumes:
+      - application/json
+      description: Route used to update a one transaction by ID
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Model of Transaction
+        in: body
+        name: transaction
+        required: true
+        schema:
+          $ref: '#/definitions/models.Transaction'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Update one transaction
+      tags:
+      - transaction
+  /transactions:
+    get:
+      consumes:
+      - application/json
+      description: Route used to list all transactions registred
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Show all transactions registred
+      tags:
+      - transaction
+  /transactions/blockNumber/{BlockNumber}:
+    get:
+      consumes:
+      - application/json
+      description: Route used to get a one transaction registred by BlockNumber
+      parameters:
+      - description: Transaction BlockNumber
+        in: path
+        name: BlockNumber
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Transaction'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/httputil.HTTPError'
+      summary: Show one transaction registred
+      tags:
+      - transaction
+swagger: "2.0"
