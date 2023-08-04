@@ -11,7 +11,7 @@ import (
 func UpdateTransaction(c *gin.Context) {
 	id := c.Params.ByName("id")
 
-	var transaction *models.Transaction
+	var transaction models.Transaction
 
 	database.DB.First(&transaction, id)
 	if transaction.ID == 0 {
@@ -24,6 +24,13 @@ func UpdateTransaction(c *gin.Context) {
 	if err := c.ShouldBindJSON(&transaction); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
+		})
+		return
+	}
+
+	if err := models.ValidateTransaction(&transaction); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"erro": err.Error(),
 		})
 		return
 	}

@@ -3,3 +3,4 @@ thunder-tests
 postgres-data
 
 .env
+./.env
